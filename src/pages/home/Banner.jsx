@@ -8,7 +8,7 @@ import { NavLink } from "react-router";
 
 export default function Banner() {
   return (
-    <Carousel autoPlay={false} infiniteLoop={false} showThumbs={false}>
+    <Carousel autoPlay={true} infiniteLoop={true} showThumbs={false}>
       {/* === স্লাইড ১ === */}
       <div className="relative">
         <img src={bannerImg1} alt="Banner 1" className="w-full object-cover" />
