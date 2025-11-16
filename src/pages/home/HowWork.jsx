@@ -25,7 +25,7 @@ const cardVariants = {
 
 export default function HowWork({ data }) {
   const works = data;
-  console.log(works);
+//   console.log(works);
   const controls = useAnimation();
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
