@@ -25,7 +25,7 @@ export default function Brands() {
     <Swiper
       slidesPerView={4}
       loop={true}
-      autoplay={{ delay: 1500, disableOnInteraction: false }}
+      autoplay={{ delay: 2500, disableOnInteraction: false }}
       modules={[Autoplay]}
       centeredSlides={true}
       spaceBetween={30}

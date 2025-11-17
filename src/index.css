@@ -16,17 +16,28 @@ body {
   font-optical-sizing: auto;
 }
 
+/* swiper pagination */
+
+.swiper-slide {
+  opacity: 0.3;
+  transition: opacity 0.5s ease;
+}
+
+.swiper-slide-active {
+  opacity: 1;
+}
 
 /* here are all custom class */
-/* === CONTAINER === */
-.container {
-  @apply w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
-}
-
 /* === SECTION === */
 .section {
-  @apply py-12 sm:py-16 md:py-20 lg:py-24;
+  @apply py-12 sm:py-16 md:py-20 lg:py-20;
 }
+
+/* === CONTAINER === */
+.container {
+  @apply w-full max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8;
+}
+
 .section-sm {
   @apply py-6 sm:py-8 md:py-10;
 }
