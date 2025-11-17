@@ -27,6 +27,11 @@ body {
   opacity: 1;
 }
 
+/* coverage component code */
+.leaflet-container.leaflet-touch-drag.leaflet-touch-zoom {
+  z-index: 0;
+}
+
 /* here are all custom class */
 /* === SECTION === */
 .section {

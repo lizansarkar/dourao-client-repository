@@ -112,7 +112,7 @@ export default function Navbar() {
 
       {/* === মোবাইল মেনু (ড্রপডাউন) === */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-white border-t border-gray-100">
+        <div className="md:hidden bg-white border-t border-gray-100 z-50">
           <div className="px-4 py-3 space-y-2">
             {navLinks.map((link) => (
               <NavLink
