@@ -1,7 +1,14 @@
-import React from 'react'
+import React from "react";
+import { useForm } from "react-hook-form";
 
-export default function Login() {
+const Login = () => {
+  // const {} = useForm();
+  
   return (
-    <div>Login</div>
-  )
-}
+    <div>
+      login ghdghfdyt
+    </div>
+  );
+};
+
+export default Login;
