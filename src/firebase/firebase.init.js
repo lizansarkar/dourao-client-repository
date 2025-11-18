@@ -1,8 +1,8 @@
 // firebase.init.js
-
 import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
 
-// import.meta.env ব্যবহার করে .env ফাইল থেকে ভ্যালু লোড করা
+// import.meta.env
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
   authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
@@ -15,8 +15,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-// যদি আপনি Authentication বা অন্য কিছু ব্যবহার করেন, তবে সেগুলোকে এখানে এক্সপোর্ট করতে পারেন
 // যেমন: import { getAuth } from "firebase/auth";
-// export const auth = getAuth(app);
+export const auth = getAuth(app);
 
-export default app; // Firebase অ্যাপ ইনস্ট্যান্স এক্সপোর্ট করা
+export default app; // Firebase
