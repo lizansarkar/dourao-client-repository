@@ -10,7 +10,7 @@ const ACCENT_GREEN = "#CAEB66"; // Accent color
 // ট্র‍্যাভেল ভ্যারিয়েন্ট
 const travelVariants = {
     animate: {
-        x: ["-10%", "150%"], // ট্রাকটিকে স্ক্রিনের ডানদিকে পুরোপুরি বের করে দেওয়া হলো
+        x: ["-10%", "200%"], // ট্রাকটিকে স্ক্রিনের ডানদিকে পুরোপুরি বের করে দেওয়া হলো
         transition: {
             x: {
                 duration: 5, // ভ্রমণের সময়কাল আরও বাড়ানো হলো
@@ -117,7 +117,7 @@ const DeliveryTruck = ({ children }) => (
         </motion.div>
 
         {/* Cargo Area / Package Carrier (আপনার ব্র্যান্ডিং কালার) */}
-        <div className={`h-12 w-24 bg-[${ACCENT_GREEN}] shadow-2xl border-t-4 border-gray-700 z-30 rounded-t-lg`}>
+        <div className={`h-12 w-24 bg-[#080701] shadow-2xl border-t-4 border-gray-700 z-30 rounded-t-lg`}>
             {/* প্যাকেজ এখন উপরে আছে, তাই ভেতরে p-2 বা flex নেই */}
         </div>
         
@@ -171,12 +171,12 @@ const Loading = () => {
     }, []);
 
     return (
-        <div className="w-full h-full flex flex-col items-center justify-center p-8 bg-gray-50 min-h-screen">
+        <div className="w-full h-full flex flex-col items-center justify-center p-8 bg-gray-50 min-h-screen rele">
             
             {/* লোডিং এর মূল কন্টেইনার */}
-            <div className="w-full max-w-lg">
+            <div className="w-full relative">
                 {/* === ট্র‍্যাভেলিং আইকন এবং রাস্তা === */}
-                <div className="relative h-20 sm:h-24 overflow-hidden">
+                <div className="relative h-60 sm:h-60 overflow-hidden">
                     
                     {/* রাস্তা বা বেসলাইন */}
                     {/* রাস্তাটিকে ড্যাশ ইফেক্ট দেওয়া হলো যাতে মনে হয় এটি চলছে */}
@@ -184,7 +184,7 @@ const Loading = () => {
                         className={`absolute bottom-4 w-full h-1 bg-gray-300 rounded-full`} 
                         initial={{ backgroundPositionX: '0%' }}
                         animate={{ backgroundPositionX: '-100%' }}
-                        transition={{ duration: 0.5, ease: "linear", repeat: Infinity }}
+                        transition={{ duration: 5, ease: "linear", repeat: Infinity }}
                         style={{
                             backgroundImage: 'linear-gradient(to right, transparent 50%, #4B5563 50%)',
                             backgroundSize: '20px 100%'
@@ -193,7 +193,7 @@ const Loading = () => {
                     
                     {/* চলন্ত ডেলিভারি ট্রাক */}
                     <motion.div 
-                        className="absolute bottom-4 h-12 flex items-end"
+                        className="absolute bottom-4 h-28 flex items-end"
                         variants={travelVariants}
                         initial="initial"
                         animate="animate"
@@ -209,32 +209,6 @@ const Loading = () => {
                             </AnimatePresence>
                         </DeliveryTruck>
                     </motion.div>
-                </div>
-
-                {/* === লোডিং টেক্সট === */}
-                <div className="mt-8 text-center">
-                    <h2 className="text-xl sm:text-2xl font-bold text-gray-800">
-                         🎉 আপনার সারপ্রাইজ ডেলিভারি আসছে! 🎉
-                    </h2>
-                    <p className={`mt-2 text-sm sm:text-base text-gray-600`}>
-                        দ্রুত আপনার কাছে পৌঁছাচ্ছি। অপেক্ষা করুন... কিছু একটা পরিবর্তন হচ্ছে!
-                    </p>
-                    {/* প্রোগ্রেস বার */}
-                    <div className="mt-4 h-2 bg-gray-200 rounded-full overflow-hidden">
-                        <motion.div
-                            className={`h-full rounded-full bg-[#CAEB66]`}
-                            initial={{ width: "0%" }}
-                            animate={{ 
-                                width: ["0%", "100%", "0%"],
-                                transition: {
-                                    duration: 5, // ট্রাকের সাথে মিলিয়ে সময়কাল
-                                    ease: "linear",
-                                    repeat: Infinity,
-                                    repeatType: "loop",
-                                }
-                            }}
-                        />
-                    </div>
                 </div>
             </div>
             
