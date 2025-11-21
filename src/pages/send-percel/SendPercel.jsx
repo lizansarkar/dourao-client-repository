@@ -2,6 +2,9 @@ import React, { useState, useMemo, useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
 // Assume useLoaderData is available from react-router-dom or similar environment
 import { useLoaderData } from "react-router";
+import Swal from "sweetalert2";
+import useAxiosSicure from "../../hooks/useAxiosSicure";
+import UseAuth from "../../hooks/UseAuth";
 
 // Styling Constants
 const INPUT_CLASS =
@@ -162,6 +165,10 @@ export default function SendParcel() {
     },
   });
 
+  //axios sicure all work here
+  const { user } = UseAuth();
+  const axiosSicure = useAxiosSicure();
+
   // Local state for parcel type radio button display
   const [currentParcelType, setCurrentParcelType] = useState("Document");
 
@@ -187,7 +194,7 @@ export default function SendParcel() {
     const districts = serviceCenterData
       .filter((item) => item.region === selectedSenderRegion)
       .map((item) => item.district);
-    
+
     // Ensure districts are unique
     const uniqueDistricts = new Set(districts);
 
@@ -227,7 +234,55 @@ export default function SendParcel() {
   // Form Submission Handler
   const onSubmit = (data) => {
     console.log("পার্সেল বুকিং ডেটা:", data);
-    // Logic to navigate to confirmation page would go here
+
+    const isDocument = data.parcelType === "Document";
+    const isSameDistrict = data.senderDistrict === data.receiverDistrict;
+    const parcelWeight = parseFloat(data.parcelWeight);
+    console.log(isDocument, isSameDistrict, parcelWeight);
+
+    let cost = 0;
+
+    if (isDocument) {
+      cost = isSameDistrict ? 60 : 80;
+      console.log("same district cost", cost);
+    } else {
+      if (parcelWeight < 3) {
+        cost = isSameDistrict ? 110 : 150;
+        console.log("parcel weight cost", cost);
+      } else {
+        const minCharge = isSameDistrict ? 110 : 150;
+        const extraWeight = parcelWeight - 3;
+        const extraCharge = isSameDistrict
+          ? extraWeight * 40
+          : extraWeight * 40 + 40;
+        cost = minCharge + extraCharge;
+      }
+    }
+
+    //show sweet alert
+    Swal.fire({
+      title: "Are you sure for confirm the cost?",
+      text: `You will be chaged ${cost} taka!`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, i agree",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSicure.post("/parcels", data).then((res) => {
+          console.log("after saving parcel", res.data);
+        });
+
+        // Swal.fire({
+        //   title: "Deleted!",
+        //   text: "Your file has been deleted.",
+        //   icon: "success",
+        // });
+      }
+    });
+
+    console.log("final cost", cost);
   };
 
   return (
@@ -304,6 +359,7 @@ export default function SendParcel() {
               <h2 className={`text-lg font-bold ${ACCENT_COLOR} border-b pb-2`}>
                 Sender Details
               </h2>
+              {/* sender name */}
               <FormInput
                 label="Sender Name"
                 name="senderName"
@@ -311,12 +367,21 @@ export default function SendParcel() {
                 register={register}
                 error={errors.senderName}
               />
+              {/* sender address */}
               <FormInput
                 label="Address"
                 name="senderAddress"
                 placeholder="Address"
                 register={register}
                 error={errors.senderAddress}
+              />
+              {/* sender email address */}
+              <FormInput
+                label="Sender Email"
+                name="senderEmail"
+                placeholder="Enter your email"
+                register={register}
+                error={errors.senderEmail}
               />
               <FormInput
                 label="Sender Phone No"
@@ -431,4 +496,4 @@ export default function SendParcel() {
       </div>
     </div>
   );
-};
+}
