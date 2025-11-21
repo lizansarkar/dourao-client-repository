@@ -2,9 +2,7 @@ import React, { useState } from "react";
 import { Navigate, NavLink } from "react-router";
 import UseAuth from "../../hooks/UseAuth";
 
-const AuthActionButtons = ({user, logOut, setMobileMenuOpen }) => {
-
-
+const AuthActionButtons = ({ user, logOut, setMobileMenuOpen }) => {
   const profileBorderColor = "border-[#CAEB66]";
   const profileHoverRing = "hover:ring-[#CAEB66]";
 
@@ -74,27 +72,6 @@ const AuthActionButtons = ({user, logOut, setMobileMenuOpen }) => {
         Sign In
       </NavLink>
       <NavLink
-        to="/register"
-        onClick={() => setMobileMenuOpen && setMobileMenuOpen(false)}
-        // আপনার ব্র্যান্ডিং কালার (#BDEE58) ব্যবহার করা হয়েছে
-        className="px-5 py-2 bg-[#BDEE58] text-gray-900 font-semibold rounded-lg shadow-md hover:shadow-lg transform hover:scale-[1.02] transition-all flex items-center space-x-1"
-      >
-        <span>Sign Up</span>
-        <svg
-          className="w-5 h-5"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M13 7l5 5m0 0l-5 5m5-5H6"
-          />
-        </svg>
-      </NavLink>
-      <NavLink
         to="/rider"
         className="px-5 py-2 bg-[#BDEE58] text-gray-900 font-semibold rounded-lg shadow-md hover:shadow-lg transform hover:scale-[1.02] transition-all flex items-center space-x-1"
       >
@@ -123,33 +100,42 @@ export default function Navbar() {
   // logOut ফাংশনটি UseAuth থেকে নেওয়া হলো
   const { user, logOut } = UseAuth();
 
-  const navLinks = [
-    { to: "/services", label: "Services" },
-    { to: "/coverage", label: "Coverage" },
-    { to: "/about", label: "About Us" },
-    { to: "/pricing", label: "Pricing" },
-    { to: "/blog", label: "Blog" },
-    { to: "/send-percel", label: "Send Percel" },
-    { to: "/contact", label: "Contact" },
-  ];
+  // const navLinks = [
+  //   { to: "/services", label: "Services" },
+  //   { to: "/coverage", label: "Coverage" },
+  //   { to: "/about", label: "About Us" },
+  //   { to: "/pricing", label: "Pricing" },
+  //   { to: "/blog", label: "Blog" },
+  //   { to: "/contact", label: "Contact" },
+  // ];
 
+  const navLinks = (
+    <>
+      <li>
+        <NavLink to="services">Services</NavLink>
+      </li>
+      <li>
+        <NavLink to="coverage">Coverage</NavLink>
+      </li>
+      <li>
+        <NavLink to="about">About Us</NavLink>
+      </li>
+      <li>
+        <NavLink to="pricing">Pricing</NavLink>
+      </li>
+      <li>
+        <NavLink to="be-a-rider">Be a Rider</NavLink>
+      </li>
 
-  const getNavLinkClasses = ({ isActive }) =>
-    `font-medium transition-all duration-300 pb-1 
-         ${
-           isActive
-             ? "text-green-600 border-b-2 border-green-600" // Active style
-             : "text-gray-600 hover:text-green-600 hover:border-b-2 hover:border-green-300 border-b-2 border-transparent" // Inactive & Hover style
-         }`;
-
-
-  const getMobileNavLinkClasses = ({ isActive }) =>
-    `block px-3 py-2 rounded-lg font-medium transition-all duration-300
-         ${
-           isActive
-             ? "bg-green-100 text-green-700" // Active style
-             : "text-gray-700 hover:bg-gray-100 hover:text-gray-900" // Inactive & Hover style
-         }`;
+      {user && (
+        <>
+          <li>
+            <NavLink to="/dashboard/my-parcels">My Parcels</NavLink>
+          </li>
+        </>
+      )}
+    </>
+  );
 
   // Mobile Menu বন্ধ করার জন্য একটি সাধারণ ফাংশন
   const closeMobileMenu = () => setMobileMenuOpen(false);
@@ -171,11 +157,7 @@ export default function Navbar() {
 
           {/* === ডেক্সটপ মেনু === */}
           <div className="hidden md:flex items-center space-x-8">
-            {navLinks.map((link) => (
-              <NavLink key={link.to} to={link.to} className={getNavLinkClasses}>
-                {link.label}
-              </NavLink>
-            ))}
+            {navLinks}
           </div>
 
           {/* === ডেক্সটপ: Auth Actions (Conditional) === */}
@@ -241,16 +223,8 @@ export default function Navbar() {
         <div className="md:hidden bg-white border-t border-gray-100 z-40 shadow-xl pb-2">
           <div className="px-4 py-3 space-y-2">
             {/* ন্যাভিগেশন লিঙ্কসমূহ */}
-            {navLinks.map((link) => (
-              <NavLink
-                key={link.to}
-                to={link.to}
-                onClick={closeMobileMenu}
-                className={getMobileNavLinkClasses}
-              >
-                {link.label}
-              </NavLink>
-            ))}
+
+            {navLinks}
 
             {/* মোবাইল: Auth Actions (Conditional - Profile/Logout or Sign In/Sign Up) */}
             <div className="pt-4 pb-2 space-y-2 border-t border-gray-200">

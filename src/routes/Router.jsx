@@ -9,6 +9,8 @@ import Register from "../pages/auth/Register";
 import PrivateRoute from "./PrivateRoute";
 import Rider from "../pages/rider/Rider";
 import SendPercel from "../pages/send-percel/SendPercel";
+import DashboardLayout from "../layouts/DashboardLayout";
+import MyPercels from "../pages/dashboard/myPercels/MyPercels";
 
 export const router = createBrowserRouter([
   {
@@ -67,6 +69,16 @@ export const router = createBrowserRouter([
       {
         path: "/login",
         element: <Login></Login>
+      },
+    ]
+  },
+  {
+    path: '/dashboard',
+    element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
+    children: [
+      {
+        path: 'my-parcels',
+        element: <MyPercels></MyPercels>
       },
     ]
   }
