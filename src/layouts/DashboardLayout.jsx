@@ -1,5 +1,6 @@
 import React from "react";
-import { Outlet } from "react-router";
+import { TbTruckDelivery } from "react-icons/tb";
+import { Link, NavLink, Outlet } from "react-router";
 
 export default function DashboardLayout() {
   return (
@@ -29,7 +30,7 @@ export default function DashboardLayout() {
               <path d="M14 10l2 2l-2 2"></path>
             </svg>
           </label>
-          <div className="px-4">Navbar Title</div>
+          <div className="px-4">Dourao Dashboard</div>
         </nav>
         {/* Page content here */}
         <Outlet></Outlet>
@@ -42,12 +43,13 @@ export default function DashboardLayout() {
           aria-label="close sidebar"
           className="drawer-overlay"
         ></label>
-        <div className="flex min-h-full flex-col items-start bg-base-200 is-drawer-close:w-14 is-drawer-open:w-64">
+        <div className="flex min-h-full flex-col items-start bg-base-200 is-drawer-close:w-20 is-drawer-open:w-64">
           {/* Sidebar content here */}
           <ul className="menu w-full grow">
             {/* List item */}
             <li>
-              <button
+              <Link
+                to="/"
                 className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
                 data-tip="Homepage"
               >
@@ -66,7 +68,15 @@ export default function DashboardLayout() {
                   <path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
                 </svg>
                 <span className="is-drawer-close:hidden">Homepage</span>
-              </button>
+              </Link>
+            </li>
+
+            {/* our dashboard link */}
+            <li>
+              <Link to='/dashboard/my-parcels' className="is-drawer-close:tooltip is-drawer-close:tooltip-right">
+                 <TbTruckDelivery />
+                 <span className="is-drawer-close:hidden">My Parcels</span>
+              </Link>
             </li>
 
             {/* List item */}

@@ -117,7 +117,7 @@ const DeliveryTruck = ({ children }) => (
         </motion.div>
 
         {/* Cargo Area / Package Carrier (আপনার ব্র্যান্ডিং কালার) */}
-        <div className={`h-12 w-24 bg-[#080701] shadow-2xl border-t-4 border-gray-700 z-30 rounded-t-lg`}>
+        <div className={`h-12 w-24 bg-[#0072f5] shadow-2xl border-t-4 border-gray-700 z-30 rounded-t-lg`}>
             {/* প্যাকেজ এখন উপরে আছে, তাই ভেতরে p-2 বা flex নেই */}
         </div>
         

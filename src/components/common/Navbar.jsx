@@ -130,6 +130,9 @@ export default function Navbar() {
       {user && (
         <>
           <li>
+            <NavLink to="/send-percel">Send Parcel</NavLink>
+          </li>
+          <li>
             <NavLink to="/dashboard/my-parcels">My Parcels</NavLink>
           </li>
         </>
