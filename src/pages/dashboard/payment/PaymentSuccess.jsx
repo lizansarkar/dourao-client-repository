@@ -20,7 +20,7 @@ export default function PaymentSuccess() {
   }, [sessionId, axiosSicure]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br p-4">
+    <div className="min-h-screen flex items-center justify-center bg-green-50 p-4">
       <motion.div
         initial={{ scale: 0.8, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
