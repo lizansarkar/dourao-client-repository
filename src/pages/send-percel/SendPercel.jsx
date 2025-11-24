@@ -1,7 +1,7 @@
 import React, { useState, useMemo, useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
 // Assume useLoaderData is available from react-router-dom or similar environment
-import { useLoaderData } from "react-router";
+import { useLoaderData, useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import useAxiosSicure from "../../hooks/useAxiosSicure";
 import UseAuth from "../../hooks/UseAuth";
@@ -137,6 +137,8 @@ export default function SendParcel() {
   const [selectedSenderRegion, setSelectedSenderRegion] = useState("");
   const [selectedReceiverRegion, setSelectedReceiverRegion] = useState("");
 
+  const navigate = useNavigate();
+
   // React-hook-form setup
   const {
     register,
@@ -269,9 +271,18 @@ export default function SendParcel() {
       cancelButtonColor: "#d33",
       confirmButtonText: "Yes, i agree",
     }).then((result) => {
+
       if (result.isConfirmed) {
         axiosSicure.post("/parcels", data).then((res) => {
           console.log("after saving parcel", res.data);
+          if (res.data.insertedId) {
+            navigate('/dashboard/my-parcels');
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your file has been deleted.",
+              icon: "success",
+            });
+          }
         });
 
         // Swal.fire({

@@ -48,6 +48,18 @@ export default function MyPercels() {
       }
     });
   };
+
+  const handlePayment = async (parcel) => {
+    const paymentInfo = {
+      cost: parcel.cost,
+      parcelId: parcel._id,
+      senderEmail: parcel.senderEmail,
+      parcelName: parcel.parcelName,
+    }
+    const res = await axiosSicure.post('/payment-checkout-session', paymentInfo);
+    window.location.href = res.data.url;
+  }
+  
   return (
     <div>
       <h1>All My Percels : {parcels.length}</h1>
@@ -76,7 +88,8 @@ export default function MyPercels() {
                     <td>{parcel.cost}</td>
                     <td>
                       {
-                        parcel.paymentStatus === 'paid' ? <span className="text-green-500">paid</span> : <Link to={`/dashboard/payment/${parcel._id}`}><span className="btn btn-square hover:bg-primary text-red-500">pay</span></Link>
+                        // parcel.paymentStatus === 'paid' ? <span className="text-green-500">paid</span> : <Link to={`/dashboard/payment/${parcel._id}`}><span className="btn btn-square hover:bg-primary text-red-500">pay</span></Link>
+                        parcel.paymentStatus === 'paid' ? <span className="text-green-500">paid</span> : <button onClick={()=>handlePayment(parcel)} className="btn btn-square hover:bg-primary text-red-500">pay</button>
                       }
                     </td>
                     <td>{parcel.deliveryStatus}</td>
