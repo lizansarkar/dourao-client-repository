@@ -4,6 +4,7 @@ import UseAuth from "../../../hooks/UseAuth";
 import useAxiosSicure from "../../../hooks/useAxiosSicure";
 import { TbEdit, TbEyeBolt, TbTrash } from "react-icons/tb";
 import Swal from "sweetalert2";
+import { Link } from "react-router";
 
 export default function MyPercels() {
   const { user } = UseAuth();
@@ -60,7 +61,8 @@ export default function MyPercels() {
                 <th>Sl No:</th>
                 <th>Name</th>
                 <th>Cost</th>
-                <th>Date</th>
+                <th>Payment</th>
+                <th>Delivery Status</th>
                 <th>Actions</th>
               </tr>
             </thead>
@@ -72,6 +74,12 @@ export default function MyPercels() {
                     <th>{index + 1}</th>
                     <td>{parcel.parcelName}</td>
                     <td>{parcel.cost}</td>
+                    <td>
+                      {
+                        parcel.paymentStatus === 'paid' ? <span className="text-green-500">paid</span> : <Link to={`/dashboard/payment/${parcel._id}`}><span className="btn btn-square hover:bg-primary text-red-500">pay</span></Link>
+                      }
+                    </td>
+                    <td>{parcel.deliveryStatus}</td>
                     <td>{parcel.createdAt}</td>
                     <td>
                       <button className="btn btn-square hover:bg-primary">
