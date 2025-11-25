@@ -124,7 +124,7 @@ export default function Navbar() {
         <NavLink to="pricing">Pricing</NavLink>
       </li>
       <li>
-        <NavLink to="be-a-rider">Be a Rider</NavLink>
+        <NavLink to="rider">Be a Rider</NavLink>
       </li>
 
       {user && (
