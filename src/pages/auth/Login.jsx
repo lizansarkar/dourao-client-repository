@@ -16,7 +16,7 @@ export default function Login() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  console.log("in the login page;", location)
+//   console.log("in the login page;", location)
 
   const handleLogin = (data) => {
     console.log("Login data:", data);

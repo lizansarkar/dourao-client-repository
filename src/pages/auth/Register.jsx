@@ -2,9 +2,11 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
 
-import UseAuth from "../../hooks/UseAuth";
-import { Link, useLocation, useNavigate } from "react-router";
+
+import { data, Link, useLocation, useNavigate } from "react-router";
 import axios from "axios";
+import useAxiosSicure from "../../hooks/useAxiosSicure";
+import UseAuth from "../../hooks/useAuth";
 
 export default function Register() {
   const {
@@ -15,8 +17,9 @@ export default function Register() {
 
   const location = useLocation();
   const navigate = useNavigate();
-  console.log("form register",location)
+  const axiosSicure = useAxiosSicure();
 
+  //from useauth
   const { registerUser, signInWithGoogle, updateUserProfile } = UseAuth();
 
   const handleRegistration = (data) => {
@@ -35,7 +38,20 @@ export default function Register() {
           import.meta.env.VITE_IMAGE_HOST_API_KEY
         }`;
         axios.post(imgUrl, formData).then((res) => {
-          console.log("after image upload", res.data.data.url);
+          // console.log("after image upload", res.data.data.url);
+          const photoURL = res.data.data.url;
+
+          //create user in the database
+          const userInfo = {
+            email: data.email,
+            displayName: data.name,
+            photoURL: photoURL,
+          };
+          axiosSicure.post("/users", userInfo).then((res) => {
+            if (res.data.insertedId) {
+              console.log("user created in the database");
+            }
+          });
 
           //update user profile img
           const userProfile = {
@@ -43,10 +59,10 @@ export default function Register() {
             photoURL: res.data.data.url,
           };
           updateUserProfile(userProfile)
-          .then(() => {
-            console.log('user profile update data')
-          })
-          .catch(error => console.log(error))
+            .then(() => {
+              console.log("user profile update data");
+            })
+            .catch((error) => console.log(error));
         });
       })
       .catch((error) => {
@@ -58,7 +74,22 @@ export default function Register() {
     signInWithGoogle()
       .then((result) => {
         console.log("Google sign-in success:", result.user);
-        navigate(location.state || "/")
+        navigate(location.state || "/");
+
+        //create user in the database
+        const userInfo = {
+          email: result.user.email,
+          displayName: result.user.name,
+          photoURL: result.user.photoURL,
+        };
+
+        axiosSicure.post('/users', userInfo)
+        .then(res => {
+          console.log('user data has been stored', res.data)
+
+          navigate(location.state || '/')
+        })
+
       })
       .catch((error) => {
         console.error("Google sign-in error:", error);
