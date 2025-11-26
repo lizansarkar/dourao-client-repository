@@ -1,4 +1,5 @@
 import React from "react";
+import { RiEBike2Fill } from "react-icons/ri";
 import { TbTruckDelivery } from "react-icons/tb";
 import { Link, NavLink, Outlet } from "react-router";
 
@@ -43,9 +44,9 @@ export default function DashboardLayout() {
           aria-label="close sidebar"
           className="drawer-overlay"
         ></label>
-        <div className="flex min-h-full flex-col items-start bg-base-200 is-drawer-close:w-20 is-drawer-open:w-64">
+        <div className="flex min-h-full flex-col items-start bg-base-200 is-drawer-close:w-15 is-drawer-open:w-64">
           {/* Sidebar content here */}
-          <ul className="menu w-full grow">
+          <ul className="menu w-full grow gap-10">
             {/* List item */}
             <li>
               <Link
@@ -73,9 +74,17 @@ export default function DashboardLayout() {
 
             {/* our dashboard link */}
             <li>
-              <Link to='/dashboard/my-parcels' className="is-drawer-close:tooltip is-drawer-close:tooltip-right">
+              <Link to='/dashboard/my-parcels' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="My Parcels">
                  <TbTruckDelivery />
                  <span className="is-drawer-close:hidden">My Parcels</span>
+              </Link>
+            </li>
+
+            {/* approve rider menu add in dashboard */}
+            <li>
+              <Link to='approve-rider' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Apporve Rider">
+                 <RiEBike2Fill />
+                 <span className="is-drawer-close:hidden">Apporve Rider</span>
               </Link>
             </li>
 
