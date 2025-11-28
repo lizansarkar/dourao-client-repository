@@ -1,4 +1,6 @@
 import React from "react";
+import { BiUser } from "react-icons/bi";
+import { FaUser } from "react-icons/fa";
 import { RiEBike2Fill } from "react-icons/ri";
 import { TbTruckDelivery } from "react-icons/tb";
 import { Link, NavLink, Outlet } from "react-router";
@@ -85,6 +87,13 @@ export default function DashboardLayout() {
               <Link to='approve-rider' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Apporve Rider">
                  <RiEBike2Fill />
                  <span className="is-drawer-close:hidden">Apporve Rider</span>
+              </Link>
+            </li>
+            {/* Users menu add in dashboard */}
+            <li>
+              <Link to='users-management' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Users Manegement">
+                 <FaUser />
+                 <span className="is-drawer-close:hidden">Users</span>
               </Link>
             </li>
 
