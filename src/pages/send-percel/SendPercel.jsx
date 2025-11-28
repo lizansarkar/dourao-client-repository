@@ -258,8 +258,11 @@ export default function SendParcel() {
           ? extraWeight * 40
           : extraWeight * 40 + 40;
         cost = minCharge + extraCharge;
+
+        console.log(cost)
       }
     }
+    data.cost=cost
 
     //show sweet alert
     Swal.fire({

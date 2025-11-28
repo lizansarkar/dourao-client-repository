@@ -36,7 +36,7 @@ export default function Payment() {
   const handlePayment = async () => {
     try {
       const paymentInfo = {
-        cost: parseFloat(parcel.cost) || 0, // ✅ Ensure it's a number
+        cost: parseFloat(parcel.cost) || 0,
         parcelId: parcel._id,
         senderEmail: parcel.senderEmail,
         parcelName: parcel.parcelName,

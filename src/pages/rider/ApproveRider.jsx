@@ -6,18 +6,6 @@ import { format } from "date-fns";
 import Swal from "sweetalert2";
 
 const ACCENT_COLOR = "text-[#008953]";
-const handleApprove = (riderId, riderName) => {
-  console.log(`Attempting to approve Rider: ${riderName} (ID: ${riderId})`);
-
-  Swal.fire({
-    title: "রাইডার অনুমোদিত!",
-    text: `রাইডার ${riderName}-কে সফলভাবে অনুমোদন দেওয়া হয়েছে।`,
-    icon: "success",
-    confirmButtonColor: "#51CC79",
-    confirmButtonText: "ঠিক আছে!",
-  }).then(() => {
-  });
-};
 
 // --- Main Component: ApproveRider ---
 export default function ApproveRider() {
@@ -27,6 +15,7 @@ export default function ApproveRider() {
     data: riders = [],
     isLoading,
     isError,
+    refetch,
   } = useQuery({
     queryKey: ["riders", "pending"],
     queryFn: async () => {
@@ -34,6 +23,36 @@ export default function ApproveRider() {
       return res.data;
     },
   });
+
+  const handleApprove = (riderId, riderName) => {
+    const updateInfo = { status: "approve" };
+    axiosSicure.patch(`/riders/${riderId}`, updateInfo).then((res) => {
+      if (res.data.modifiedCount) {
+        Swal.fire({
+          title: "রাইডার অনুমোদিত!",
+          text: `রাইডার ${riderName}-কে সফলভাবে অনুমোদন দেওয়া হয়েছে।`,
+          icon: "success",
+          confirmButtonColor: "#51CC79",
+          confirmButtonText: "ঠিক আছে!",
+        }).then(() => {
+          refetch()
+        });
+      }
+    });
+    console.log(`Attempting to approve Rider: ${riderName} (ID: ${riderId})`);
+  };
+
+  const handleReject = (riderId, riderName) => {
+    console.log(`Attempting to approve Rider: ${riderName} (ID: ${riderId})`);
+
+    Swal.fire({
+      title: "রাইডার Batil!",
+      text: `রাইডার ${riderName}-কে সফলভাবে অনুমোদন দেওয়া hoyni`,
+      icon: "error",
+      confirmButtonColor: "#6e0000",
+      confirmButtonText: "ঠিক আছে!",
+    }).then(() => {});
+  };
 
   if (isLoading) {
     return (
@@ -78,6 +97,9 @@ export default function ApproveRider() {
               </th>
               <th className="px-6 py-3 text-left text-xs font-bold uppercase tracking-wider">
                 Contact
+              </th>
+              <th className="px-6 py-3 text-left text-xs font-bold uppercase tracking-wider">
+                Status
               </th>
               <th className="px-6 py-3 text-left text-xs font-bold uppercase tracking-wider">
                 Applied On
@@ -125,6 +147,10 @@ export default function ApproveRider() {
                     {rider.contact}
                   </td>
 
+                  {/* Applied On (status) */}
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    {rider.status}
+                  </td>
                   {/* Applied On (Formatted Date) */}
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                     {/* Using date-fns for clean date display */}
@@ -145,6 +171,15 @@ export default function ApproveRider() {
                     >
                       <FaCheckCircle className="mr-2 h-4 w-4" />
                       Approve
+                    </button>
+
+                    <button
+                      onClick={() => handleReject(rider._id, rider.yourName)}
+                      className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-[#890000] hover:bg-[#6e0000] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#cc5151] transition-colors cursor-pointer ml-4"
+                      title="Reject Rider Application"
+                    >
+                      <FaCheckCircle className="mr-2 h-4 w-4" />
+                      Reject
                     </button>
                   </td>
                 </tr>
