@@ -16,6 +16,7 @@ import PaymentSuccess from "../pages/dashboard/payment/PaymentSuccess";
 import PaymentCancelled from "../pages/dashboard/payment/PaymentCancelled";
 import ApproveRider from "../pages/rider/ApproveRider";
 import UserManagement from "../pages/dashboard/userManagement/UserManagement";
+import ErrorPage from "../ErrorPage";
 
 export const router = createBrowserRouter([
   {
@@ -105,6 +106,10 @@ export const router = createBrowserRouter([
       {
         path: 'users-management',
         element: <UserManagement></UserManagement>
+      },
+      {
+        path: '*',
+        element: <ErrorPage></ErrorPage>
       }
     ]
   }

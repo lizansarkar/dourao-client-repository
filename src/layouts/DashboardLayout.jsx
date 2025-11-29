@@ -4,8 +4,10 @@ import { FaUser } from "react-icons/fa";
 import { RiEBike2Fill } from "react-icons/ri";
 import { TbTruckDelivery } from "react-icons/tb";
 import { Link, NavLink, Outlet } from "react-router";
+import UseRole from "../hooks/UseRole";
 
 export default function DashboardLayout() {
+  const { role } = UseRole();
   return (
     <div className="drawer lg:drawer-open">
       <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
@@ -76,26 +78,43 @@ export default function DashboardLayout() {
 
             {/* our dashboard link */}
             <li>
-              <Link to='/dashboard/my-parcels' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="My Parcels">
-                 <TbTruckDelivery />
-                 <span className="is-drawer-close:hidden">My Parcels</span>
+              <Link
+                to="/dashboard/my-parcels"
+                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                data-tip="My Parcels"
+              >
+                <TbTruckDelivery />
+                <span className="is-drawer-close:hidden">My Parcels</span>
               </Link>
             </li>
-
-            {/* approve rider menu add in dashboard */}
-            <li>
-              <Link to='approve-rider' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Apporve Rider">
-                 <RiEBike2Fill />
-                 <span className="is-drawer-close:hidden">Apporve Rider</span>
-              </Link>
-            </li>
-            {/* Users menu add in dashboard */}
-            <li>
-              <Link to='users-management' className="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Users Manegement">
-                 <FaUser />
-                 <span className="is-drawer-close:hidden">Users</span>
-              </Link>
-            </li>
+            {role === "admin" && (
+              <>
+                {/* approve rider menu add in dashboard */}
+                <li>
+                  <Link
+                    to="approve-rider"
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="Apporve Rider"
+                  >
+                    <RiEBike2Fill />
+                    <span className="is-drawer-close:hidden">
+                      Apporve Rider
+                    </span>
+                  </Link>
+                </li>
+                {/* Users management menu add in dashboard */}
+                <li>
+                  <Link
+                    to="users-management"
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="Users Manegement"
+                  >
+                    <FaUser />
+                    <span className="is-drawer-close:hidden">Users</span>
+                  </Link>
+                </li>
+              </>
+            )}
 
             {/* List item */}
             <li>
