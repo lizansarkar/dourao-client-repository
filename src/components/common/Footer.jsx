@@ -10,7 +10,7 @@ export default function Footer() {
           <div className="flex flex-col items-center space-y-4">
             <NavLink to="/" className="flex items-center">
               <img
-                src="/logo-img/logo.png"
+                src="/logo-img/footer-logo.png"
                 alt="Dourao Logo"
                 className="h-10 w-auto sm:h-12 md:h-12 object-contain transition-all duration-300"
               />

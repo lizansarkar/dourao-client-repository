@@ -64,6 +64,8 @@ export default function Register() {
             })
             .catch((error) => console.log(error));
         });
+
+        navigate(location.state || '/')
       })
       .catch((error) => {
         console.error("Registration error:", error);
