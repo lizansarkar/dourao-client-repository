@@ -17,6 +17,7 @@ import PaymentCancelled from "../pages/dashboard/payment/PaymentCancelled";
 import ApproveRider from "../pages/rider/ApproveRider";
 import UserManagement from "../pages/dashboard/userManagement/UserManagement";
 import ErrorPage from "../ErrorPage";
+import AdminRoute from "./AdminRoute";
 
 export const router = createBrowserRouter([
   {
@@ -101,16 +102,17 @@ export const router = createBrowserRouter([
       },
       {
         path: 'approve-rider',
-        element: <ApproveRider></ApproveRider>
+        element: <AdminRoute><ApproveRider></ApproveRider></AdminRoute>
       },
       {
         path: 'users-management',
+        // element: <AdminRoute><UserManagement></UserManagement></AdminRoute>
         element: <UserManagement></UserManagement>
       },
       {
         path: '*',
         element: <ErrorPage></ErrorPage>
-      }
+      },
     ]
   }
 ]);

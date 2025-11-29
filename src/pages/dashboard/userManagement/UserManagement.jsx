@@ -21,7 +21,7 @@ export default function UserManagement() {
     },
   });
 
-const handleMakeUser = (user) => {
+const handleMakeAdmin = (user) => {
   Swal.fire({
     title: 'Are you sure?',
     text: `You are about to grant ADMIN role to ${user.displayName}.`,
@@ -35,7 +35,7 @@ const handleMakeUser = (user) => {
     if (result.isConfirmed) {
       const roleInfo = { role: 'admin' };
       axiosSecure
-        .patch(`/users/${user._id}`, roleInfo)
+        .patch(`/users/${user._id}/role`, roleInfo)
         .then((res) => {
           if (res.data.modifiedCount) {
             refetch();
@@ -73,7 +73,7 @@ const handleRemoveAdmin = (user) => {
     if (result.isConfirmed) {
       const roleInfo = { role: 'user' };
       axiosSecure
-        .patch(`/users/${user._id}`, roleInfo)
+        .patch(`/users/${user._id}/role`, roleInfo)
         .then((res) => {
           if (res.data.modifiedCount) {
             refetch();
@@ -165,7 +165,7 @@ const handleRemoveAdmin = (user) => {
                   ) : (
                     <button
                       className="btn btn-square bg-primary"
-                      onClick={() => handleMakeUser(user)}
+                      onClick={() => handleMakeAdmin(user)}
                     >
                       <FaUserShield></FaUserShield>
                     </button>

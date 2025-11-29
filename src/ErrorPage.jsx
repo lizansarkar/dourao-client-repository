@@ -1,7 +1,12 @@
 import React, { useEffect } from 'react';
-import { useNavigate, Link } from 'react-router';
+// useNavigate এবং Link এর জন্য 'react-router-dom' ব্যবহার করা হলো।
+import { useNavigate, Link } from 'react-router'; 
 import { motion } from 'framer-motion';
-import { FaMapPin, FaRunning } from 'react-icons/fa';
+// 'Running' আইকনের পরিবর্তে নির্ভরযোগ্য 'PersonStanding' আইকন ব্যবহার করা হলো, যা অ্যানিমেশনের মাধ্যমে দৌড়ানোর ভঙ্গিতে দেখানো হবে।
+import { MapPin, PersonStanding } from 'lucide-react'; 
+
+// PersonStanding আইকনটিকে motion component হিসেবে সংজ্ঞায়িত করা হলো ডাইনামিক অ্যানিমেশন প্রয়োগ করার জন্য।
+const MotionRunningIcon = motion(PersonStanding);
 
 export default function ErrorPage() {
   const navigate = useNavigate();
@@ -15,15 +20,14 @@ export default function ErrorPage() {
     // 3000 মিলিসেকেন্ড = 3 সেকেন্ড
     const timer = setTimeout(() => {
       navigate("/", { replace: true });
-    }, 30000);
+    }, 3000); 
     
     // কম্পোনেন্ট আনমাউন্ট হলে টাইমার পরিষ্কার করা (Cleanup)
     return () => clearTimeout(timer);
   }, [navigate]);
 
-  // ফ্রেমার মোশন ভ্যারিয়েন্টস দৌড়ানোর প্রভাব তৈরির জন্য
+  // ১. দৌড়ানোর সময় পুরো বডির ডানে-বামে ক্রমাগত নড়াচড়ার প্রভাব (Main Runner Container)
   const runnerVariants = {
-    // ডানে-বামে ক্রমাগত নড়াচড়ার প্রভাব
     animate: {
       x: ["-5%", "5%"],
       transition: {
@@ -33,6 +37,28 @@ export default function ErrorPage() {
           ease: "easeInOut",
         },
       },
+    },
+  };
+
+  // ২. আইকনের জন্য নতুন ডাইনামিক অ্যানিমেশন: হালকা উপরে-নিচে বাউন্স এবং টিল্ট যা দৌড়ানোর অনুভূতি দেবে
+  const iconRunVariants = {
+    animate: {
+        // Y-অ্যাক্সিসে হালকা বাউন্স (লেগ মুভমেন্টের সিমুলেশন)
+        y: [0, -7, 0, -4, 0], 
+        // বডির সামান্য টিল্ট ও Rotation যা দৌড়ানোর ডাইনামিক ইফেক্ট তৈরি করে
+        rotate: [0, 5, 0, -5, 0], 
+        transition: {
+            y: {
+                repeat: Infinity,
+                duration: 0.4, // দ্রুত বাউন্স
+                ease: "easeInOut",
+            },
+            rotate: {
+                repeat: Infinity,
+                duration: 0.8,
+                ease: "easeInOut",
+            },
+        },
     },
   };
 
@@ -64,19 +90,24 @@ export default function ErrorPage() {
         
         {/* ৪. দৌড়ানোর থিম, আইকন এবং রাস্তা */}
         <div className="relative mb-8 pt-8">
-          {/* চলমান মানুষ/ডেলিভারি পার্সনের আইকন */}
+          {/* চলমান মানুষ/ডেলিভারি পার্সনের আইকন (সাইড-টু-সাইড মুভমেন্ট) */}
           <motion.div
             variants={runnerVariants}
             animate="animate"
             className="inline-block p-4 rounded-full shadow-2xl"
             style={{ backgroundColor: accentColor, boxShadow: `0 0 30px ${accentColor}55` }}
           >
-            {/* 'Run'-কে 'Running' করা হলো */}
-            <FaRunning className="w-16 h-16 sm:w-20 sm:h-20" style={{ color: primaryColor }} />
+            {/* ডাইনামিক রানিং ইফেক্ট (উপরে-নিচে বাউন্স ও টিল্ট) */}
+            <MotionRunningIcon 
+                variants={iconRunVariants}
+                animate="animate"
+                className="w-16 h-16 sm:w-20 sm:h-20" 
+                style={{ color: primaryColor }} 
+            />
           </motion.div>
 
-          {/* ডেস্টিনেশন পাওয়া যাচ্ছে না - ম্যাপ পিন অফ (Not Found) */}
-          <FaMapPin 
+          {/* ডেস্টিনেশন পাওয়া যাচ্ছে না - ম্যাপ পিন (Static Icon) */}
+          <MapPin 
             className="absolute right-1/4 top-0 w-12 h-12 text-red-500/80 sm:right-1/3"
             style={{ 
               filter: `drop-shadow(0 0 10px #ff0000)`,
