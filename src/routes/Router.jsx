@@ -19,6 +19,7 @@ import UserManagement from "../pages/dashboard/userManagement/UserManagement";
 import ErrorPage from "../ErrorPage";
 import AdminRoute from "./AdminRoute";
 import Pricing from "../pages/pricing/Pricing";
+import Services from "../pages/services/Services";
 
 export const router = createBrowserRouter([
   {
@@ -44,6 +45,10 @@ export const router = createBrowserRouter([
             return { howWork: [], mainService: [] };
           }
         },
+      },
+      {
+        path: "/services",
+        element: <Services></Services>
       },
 
       {
