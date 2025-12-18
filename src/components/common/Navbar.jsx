@@ -100,15 +100,6 @@ export default function Navbar() {
   // logOut ফাংশনটি UseAuth থেকে নেওয়া হলো
   const { user, logOut } = UseAuth();
 
-  // const navLinks = [
-  //   { to: "/services", label: "Services" },
-  //   { to: "/coverage", label: "Coverage" },
-  //   { to: "/about", label: "About Us" },
-  //   { to: "/pricing", label: "Pricing" },
-  //   { to: "/blog", label: "Blog" },
-  //   { to: "/contact", label: "Contact" },
-  // ];
-
   const navLinks = (
     <>
       <li>

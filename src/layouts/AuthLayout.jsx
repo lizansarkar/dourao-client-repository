@@ -11,7 +11,6 @@ export default function AuthLayout() {
     <div className="min-h-screen bg-[#F5F9ED] p-4 sm:p-8 lg:p-0">
       <div className="max-w-7xl mx-auto">
         
-        {/* লোগো সেকশন: ছবির মতো উপরের বাম কোণে */}
         <header className="py-4 sm:py-6 lg:px-4">
             <NavLink to="/" className="flex items-center">
               <img
@@ -22,7 +21,6 @@ export default function AuthLayout() {
             </NavLink>
         </header>
         
-        {/* কন্টেন্ট কন্টেইনার: দুটি কলাম (রেজিস্ট্রেশন/লগইন ফর্ম + ইমেজ) */}
         <div className="flex flex-col lg:flex-row min-h-[calc(100vh-80px)] lg:min-h-[calc(100vh-100px)]">
           
           {/* বাম কলাম: ফর্ম কন্টেন্ট (আউটলেট) */}

@@ -18,6 +18,7 @@ import ApproveRider from "../pages/rider/ApproveRider";
 import UserManagement from "../pages/dashboard/userManagement/UserManagement";
 import ErrorPage from "../ErrorPage";
 import AdminRoute from "./AdminRoute";
+import Pricing from "../pages/pricing/Pricing";
 
 export const router = createBrowserRouter([
   {
@@ -63,6 +64,10 @@ export const router = createBrowserRouter([
       {
         path: "/about",
         element: <AboutUs></AboutUs>
+      },
+      {
+        path: "/pricing",
+        element: <Pricing></Pricing>
       },
     ],
   },
