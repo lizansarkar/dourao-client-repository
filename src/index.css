@@ -16,8 +16,26 @@ body {
   font-optical-sizing: auto;
 }
 
-/* swiper pagination */
+/* Navbar Link Style */
+.nav-link-style {
+  position: relative;
+  font-weight: 400;
+  color: #6b7280;
+  transition: all 0.3s ease;
+}
 
+.nav-link-style:hover {
+  color: #000;
+}
+
+.nav-link-style.active {
+  background-color: #CAEB66;
+  color: #000 !important;
+  padding: 10px 15px;
+  border-radius: 50px;
+  font-weight: 700 !important;
+}
+/* swiper pagination */
 .swiper-slide {
   opacity: 0.3;
   transition: opacity 0.5s ease;
