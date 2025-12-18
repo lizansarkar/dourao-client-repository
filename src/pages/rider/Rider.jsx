@@ -118,14 +118,11 @@ export default function Rider() {
     return ["Select your District", ...Array.from(uniqueDistricts)];
   }, [serviceCenterData]);
 
-  // --- 2. Create Wire-House list (Memoized) ---
+
   const wireHouses = useMemo(() => {
-    // Default value if no data is loaded
     if (serviceCenterData.length === 0)
       return ["Wire-house খুঁজে পাওয়া যায়নি"];
 
-    // We use the 'district' property from serviceCenterData for the wire-house names for simplicity
-    // In a real app, you might have a dedicated 'wireHouseName' property.
     const uniqueWireHouses = new Set(
       serviceCenterData.map((item) => item.district + " - " + item.region)
     );
