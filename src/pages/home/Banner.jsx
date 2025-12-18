@@ -9,72 +9,86 @@ import { NavLink } from "react-router";
 
 export default function Banner() {
   return (
-    <Carousel autoPlay={true} infiniteLoop={true} showThumbs={false}>
-      {/* === স্লাইড ১ === */}
-      <div className="relative">
-        <img src={bannerImg1} alt="Banner 1" className="w-full object-cover" />
+    <div className="container min-h-screen">
+      <Carousel autoPlay={true} infiniteLoop={true} showThumbs={false}>
+        {/* === স্লাইড ১ === */}
+        <div className="relative">
+          <img
+            src={bannerImg1}
+            alt="Banner 1"
+            className="w-full object-cover"
+          />
 
-        <div className="absolute bottom-4 left-4 right-4 flex xs:flex-row gap-3 justify-start items-start md:bottom-16 md:left-12 lg:bottom-30 lg:left-30">
-          <NavLink
-            to="/track-parcel"
-            className="px-4 py-2 xs:px-5 xs:py-2.5 sm:px-6 sm:py-3 bg-linear-to-r from-green-300 to-[#CAEB66] text-white font-semibold text-xs xs:text-sm sm:text-base rounded-full shadow-md hover:shadow-lg transform hover:scale-105 transition-all flex items-center gap-1 xs:gap-2"
-          >
-            Track Your Parcel
-            <FaArrowCircleRight></FaArrowCircleRight>
-          </NavLink>
+          <div className="absolute bottom-4 left-4 right-4 flex xs:flex-row gap-3 justify-start items-start md:bottom-16 md:left-12 lg:bottom-30 lg:left-30">
+            <NavLink
+              to="/track-parcel"
+              className="px-4 py-2 xs:px-5 xs:py-2.5 sm:px-6 sm:py-3 bg-linear-to-r from-green-300 to-[#CAEB66] text-white font-semibold text-xs xs:text-sm sm:text-base rounded-full shadow-md hover:shadow-lg transform hover:scale-105 transition-all flex items-center gap-1 xs:gap-2"
+            >
+              Track Your Parcel
+              <FaArrowCircleRight></FaArrowCircleRight>
+            </NavLink>
 
-          <NavLink
-            to="/be-a-rider"
-            className="px-4 py-2 xs:px-5 xs:py-2.5 sm:px-6 sm:py-3 bg-white text-gray-800 font-semibold text-xs xs:text-sm sm:text-base rounded-full shadow-md hover:shadow-lg transform hover:scale-105 transition-all border border-gray-200"
-          >
-            Be A Rider
-          </NavLink>
+            <NavLink
+              to="/be-a-rider"
+              className="px-4 py-2 xs:px-5 xs:py-2.5 sm:px-6 sm:py-3 bg-white text-gray-800 font-semibold text-xs xs:text-sm sm:text-base rounded-full shadow-md hover:shadow-lg transform hover:scale-105 transition-all border border-gray-200"
+            >
+              Be A Rider
+            </NavLink>
+          </div>
         </div>
-      </div>
 
-      {/* === স্লাইড ২ === */}
-      <div className="relative">
-        <img src={bannerImg2} alt="Banner 2" className="w-full object-cover" />
+        {/* === স্লাইড ২ === */}
+        <div className="relative">
+          <img
+            src={bannerImg2}
+            alt="Banner 2"
+            className="w-full object-cover"
+          />
 
-        <div className="absolute bottom-4 left-4 right-4 flex xs:flex-row gap-3 justify-start items-start md:bottom-16 md:left-12 lg:bottom-30 lg:left-30">
-          <NavLink
-            to="/track-parcel"
-            className="px-4 py-2 xs:px-5 xs:py-2.5 sm:px-6 sm:py-3 bg-linear-to-r from-green-300 to-[#CAEB66] text-white font-semibold text-xs xs:text-sm sm:text-base rounded-full shadow-md hover:shadow-lg transform hover:scale-105 transition-all flex items-center gap-1 xs:gap-2"
-          >
-            Track Your Parcel
-            <FaArrowCircleRight></FaArrowCircleRight>
-          </NavLink>
+          <div className="absolute bottom-4 left-4 right-4 flex xs:flex-row gap-3 justify-start items-start md:bottom-16 md:left-12 lg:bottom-30 lg:left-30">
+            <NavLink
+              to="/track-parcel"
+              className="px-4 py-2 xs:px-5 xs:py-2.5 sm:px-6 sm:py-3 bg-linear-to-r from-green-300 to-[#CAEB66] text-white font-semibold text-xs xs:text-sm sm:text-base rounded-full shadow-md hover:shadow-lg transform hover:scale-105 transition-all flex items-center gap-1 xs:gap-2"
+            >
+              Track Your Parcel
+              <FaArrowCircleRight></FaArrowCircleRight>
+            </NavLink>
 
-          <NavLink
-            to="/be-a-rider"
-            className="px-4 py-2 xs:px-5 xs:py-2.5 sm:px-6 sm:py-3 bg-white text-gray-800 font-semibold text-xs xs:text-sm sm:text-base rounded-full shadow-md hover:shadow-lg transform hover:scale-105 transition-all border border-gray-200"
-          >
-            Be A Rider
-          </NavLink>
+            <NavLink
+              to="/be-a-rider"
+              className="px-4 py-2 xs:px-5 xs:py-2.5 sm:px-6 sm:py-3 bg-white text-gray-800 font-semibold text-xs xs:text-sm sm:text-base rounded-full shadow-md hover:shadow-lg transform hover:scale-105 transition-all border border-gray-200"
+            >
+              Be A Rider
+            </NavLink>
+          </div>
         </div>
-      </div>
 
-      {/* === স্লাইড ৩ === */}
-      <div className="relative">
-        <img src={bannerImg3} alt="Banner 3" className="w-full object-cover" />
+        {/* === স্লাইড ৩ === */}
+        <div className="relative">
+          <img
+            src={bannerImg3}
+            alt="Banner 3"
+            className="w-full object-cover"
+          />
 
-        <div className="absolute bottom-4 left-4 right-4 flex xs:flex-row gap-3 justify-start items-start md:bottom-16 md:left-12 lg:bottom-30 lg:left-30">
-          <NavLink
-            to="/track-parcel"
-            className="px-4 py-2 xs:px-5 xs:py-2.5 sm:px-6 sm:py-3 bg-linear-to-r from-green-300 to-[#CAEB66] text-white font-semibold text-xs xs:text-sm sm:text-base rounded-full shadow-md hover:shadow-lg transform hover:scale-105 transition-all flex items-center gap-1 xs:gap-2"
-          >
-            Track Your Parcel
-            <FaArrowCircleRight></FaArrowCircleRight>
-          </NavLink>
+          <div className="absolute bottom-4 left-4 right-4 flex xs:flex-row gap-3 justify-start items-start md:bottom-16 md:left-12 lg:bottom-30 lg:left-30">
+            <NavLink
+              to="/track-parcel"
+              className="px-4 py-2 xs:px-5 xs:py-2.5 sm:px-6 sm:py-3 bg-linear-to-r from-green-300 to-[#CAEB66] text-white font-semibold text-xs xs:text-sm sm:text-base rounded-full shadow-md hover:shadow-lg transform hover:scale-105 transition-all flex items-center gap-1 xs:gap-2"
+            >
+              Track Your Parcel
+              <FaArrowCircleRight></FaArrowCircleRight>
+            </NavLink>
 
-          <NavLink
-            to="/be-a-rider"
-            className="px-4 py-2 xs:px-5 xs:py-2.5 sm:px-6 sm:py-3 bg-white text-gray-800 font-semibold text-xs xs:text-sm sm:text-base rounded-full shadow-md hover:shadow-lg transform hover:scale-105 transition-all border border-gray-200"
-          >
-            Be A Rider
-          </NavLink>
+            <NavLink
+              to="/be-a-rider"
+              className="px-4 py-2 xs:px-5 xs:py-2.5 sm:px-6 sm:py-3 bg-white text-gray-800 font-semibold text-xs xs:text-sm sm:text-base rounded-full shadow-md hover:shadow-lg transform hover:scale-105 transition-all border border-gray-200"
+            >
+              Be A Rider
+            </NavLink>
+          </div>
         </div>
-      </div>
-    </Carousel>
+      </Carousel>
+    </div>
   );
 }

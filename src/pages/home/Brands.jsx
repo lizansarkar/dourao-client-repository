@@ -25,7 +25,7 @@ export default function Brands() {
     start_people,
   ];
   return (
-    <div className="my-5 md:my-10">
+    <div className="container my-5 md:my-10">
       <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-secondary text-center p-5">
         We've helped thousands of sales teams
       </h1>

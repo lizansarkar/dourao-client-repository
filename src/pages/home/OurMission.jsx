@@ -2,9 +2,7 @@ import React from 'react';
 
 const OurMission = () => {
   return (
-    <section className="container relative w-full overflow-hidden bg-[#03373D] p-6 sm:p-12 md:p-20 rounded-xl max-w-7xl mx-auto my-10">
-      
-      {/* 1. ডেকোরেটিভ ব্যাকগ্রাউন্ড ওয়েভ/লাইন */}
+    <div className="relative overflow-hidden bg-[#03373D] sm:p-12 md:p-20 mx-auto my-10">
       <div className="absolute inset-0 opacity-20 pointer-events-none">
         <svg 
           className="w-full h-full" 
@@ -28,8 +26,7 @@ const OurMission = () => {
         </svg>
       </div>
 
-      {/* 2. কন্টেন্ট কন্টেইনার (টেক্সট এবং ইমেজ) */}
-      <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-10">
+      <div className="container relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-10">
         
         {/* বাম দিকের কন্টেন্ট: টেক্সট এবং বাটন */}
         <div className="flex flex-col justify-center text-white">
@@ -81,7 +78,7 @@ const OurMission = () => {
         </div>
 
       </div>
-    </section>
+    </div>
   );
 };
 

@@ -12,7 +12,9 @@ export default function MainService({ data }) {
         <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">Our Services</h2>
           <p className="text-teal-100 text-sm md:text-base max-w-3xl mx-auto">
-            Enjoy fast, reliable parcel delivery with real-time tracking and zero hassle. From personal packages to business shipments — we deliver on time, every time.
+            Enjoy fast, reliable parcel delivery with real-time tracking and
+            zero hassle. From personal packages to business shipments — we
+            deliver on time, every time.
           </p>
         </div>
 
